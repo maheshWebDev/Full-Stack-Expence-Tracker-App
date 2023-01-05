@@ -10,16 +10,18 @@
 <body>
     <div class="hero">
          <div class="form-box"> 
-            <form class="input-group">
+            <form class="input-group" id="form">
                 <label for="name">Name</label>
-                <input type="text" class="input-field" id="name" placeholder="Enter Name" required>
+                <input type="text" class="input-field" id="name" name="" placeholder="Enter Name" required>
                 <label for="email">Email</label>
-                <input type="email" class="input-field" id="email" placeholder="Enter Email" required>
+                <input type="email" class="input-field" id="email" name="" placeholder="Enter Email" required>
                 <label for="password">Password</label>
-                <input type="text" class="input-field" id="password" placeholder="Enter Password" required>
+                <input type="text" class="input-field" id="password" name="" placeholder="Enter Password" required>
                 <button type="submit" class="submit-btn">Signup</button>
             </form>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
