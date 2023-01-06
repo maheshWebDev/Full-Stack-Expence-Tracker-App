@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hero">
+      
+         <div class="form-box"> 
+           <div class="button-box">
+            <div id="btn"></div>
+            <button type="button" class="toggle-btn" onclick="signin()">Sign In</button>
+            <button type="button" class="toggle-btn" onclick="signup()">Sign Up</button>
+           </div>
+           <div class="social-icons">
+            <img src="./login-reg-img/fb.png" alt="">
+            <img src="./login-reg-img/tw.png" alt="">
+            <img src="./login-reg-img/gp.png" alt="">
+           </div>
+           <form action="" class="input-group" id="sign-in">
+            <input type="email" class="input-field" name="email" placeholder="Enter Email" required>
+            <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
+            <input type="checkbox" class="check-box" ><span>Remember Password</span>
+            <button type="submit" class="submit-btn">Sign In</button>
+           </form>
+           <form action="http://localhost:3000/user/signup" class="input-group" id="sign-up" method="post">
+            <input type="text" class="input-field" name="name" placeholder="Enter Name" required>
+            <input type="email" class="input-field" name="email" placeholder="Enter Email" required>
+            <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
+            <input type="checkbox" class="check-box"><span>agree to the terms & conditions</span>
+            <button type="submit" class="submit-btn">Sign Up</button>
+           </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
