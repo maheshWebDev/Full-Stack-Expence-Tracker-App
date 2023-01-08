@@ -1,4 +1,4 @@
-
+const bcrypt = require('bcrypt')
 
 const User = require('../model/userModel')
 
@@ -8,16 +8,21 @@ module.exports.addUser = (req,res)=>{
     if(name == null || email == null || password == null){
         return res.status(400).json({err:"bad parameter"})
     }
-    User.create({
-        name : name,
-        email : email,
-        password:password
+
+    const saltRound = 10
+
+    bcrypt.hash(password,saltRound,(err,hash)=>{
+        User.create({
+            name : name,
+            email : email,
+            password:hash
+        }).then(()=>{
+            return res.status(201).json({message:"successfully Registred"});
+          }).catch((err)=>{
+              res.status(500).json(err)
+          })
     })
-    .then(()=>{
-      return res.status(201).json({message:"successfully Registred"});
-    }).catch((err)=>{
-        res.status(500).json(err)
-    })
+    
 }
 
 module.exports.loginUser = (req,res)=>{
@@ -26,14 +31,18 @@ module.exports.loginUser = (req,res)=>{
     User.findAll({where:{email:email},raw:true})
     .then((data)=>{
         if(data){
-        if(data[0].password===password){
-          res.status(200).json({message:" User login sucessfu"})
+bcrypt.compare(password, data[0].password,(err,result)=>{
+    if(!err){
+        res.status(200).json({message:" User login sucessfu"})
+    }else{
+        return  res.status(401).json({message:"password is incorrect"})
+    }
+})
         }else{
-            res.status(401).json({message:"User not authorized"})
-        }
+          return  res.status(404).json({err:"User not found"})
         }
     }).catch((err)=>{
-        res.status(404).json({err:"User not found"})
+        res.status(500).json({err:"not found",success:false})
     })
 
 }
