@@ -14,6 +14,7 @@ const user = require('./model/userModel')
 const app = express();
 
 // Global middelware
+
 app.use(cors())
 
 app.use(express.json());
@@ -25,6 +26,7 @@ app.use(express.urlencoded({extended:true}));
 app.use('/user',userRoute)
 
 // db sync
+
 db.sync().then().catch((err)=>{
     console.log(err);
 })
