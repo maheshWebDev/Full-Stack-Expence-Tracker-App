@@ -14,34 +14,45 @@ function signin(){
 
 
 
+//  sign up 
+
+let signupform = document.getElementById('sign-up');
+let signinform = document.getElementById('sign-in');
+
+signupform.addEventListener('submit',registerUser);
+signinform.addEventListener('submit',loginUser);
+
+function registerUser(e){
+    e.preventDefault();
+let name = document.getElementById('up-name').value;
+let email = document.getElementById('up-email').value;
+let password = document.getElementById('up-password').value;
+const obj = {
+    name,
+    email,
+    password
+}
+axios.post('http://localhost:3000/user/signup',obj).then((res)=>{
+    console.log(res)
+})
+// console.log(obj)
+}
 
 
-// let form = document.getElementById('form');
-// form.addEventListener('submit',postToUser);
-
-// function postToUser(e){
-//     e.preventDefault()
-// let name = document.getElementById('name').value;
-// let email = document.getElementById('email').value;
-// let password = document.getElementById('password').value;
-// const obj = {
-//     name,
-//     email,
-//     password
-// }
-// axios.post('http://localhost:3000/user/signup',obj)
-// }
-
-
-
-// const father = new Promise((resolve,reject)=>{
-//     let shop = open
-//     setTimeout(()=>{
-//         if(shop){
-//             resolve("order given");
-//         }else{
-//             reject("shop is closed");
-//         }
-//     },1000)
-// })
-
+// sign in
+function loginUser(e){
+    e.preventDefault();
+let email = document.getElementById('in-email').value;
+let password = document.getElementById('in-password').value;
+const obj = {
+    email,
+    password
+}
+axios.post('http://localhost:3000/user/login',obj).then((res)=>{
+    // console.log();
+    alert(res.data.message)
+    window.location.href="add-expence.html"; 
+}).catch((err)=>{
+    console.log(err)
+})
+}

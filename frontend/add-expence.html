@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense-Manager</title>
+  <link rel="stylesheet" href="add-expence.css">
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">EXPENSE MANAGER</a>
+    <ul>
+        <li><a href="#">Add-Expense</a></li>
+    </ul>
+   </header>
+   <div class="header-h1">
+    <h1>Manage Your Expence Fast And Easily</h1>
+   </div>
+   
+<div class="form-container">
+  <form  id="form">
+      <input type="text" id="exp-name" class="input" name="name" value="" placeholder="Expence Name">
+   
+    <input type="number" id="exp-amt" class="input" name="amount" value="" placeholder="Amount Spent">
+   
+    <input type="text" id="exp-des" class="input" name="discription" value="" placeholder="Expence Description">
+    
+      <button type="submit" class="from-btn">Add Expense</button>
+</form>
+  </form>
+</div>
+   
+
+    
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Expense Name</th>
+          <th>Amount Spent</th>
+          <th>Expense Description</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td >goa trip</td>
+          <td>Domenic</td>
+          <td>88,110</td>
+          <td><button>Delete</button></td>
+        </tr>
+        
+      </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"></script>
+  <script src="add-expence.js"></script>
+</body>
+</html>

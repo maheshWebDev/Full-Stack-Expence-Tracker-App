@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>EXPENCE MANAGER</h1>
+    </header>
     <div class="hero">
       
          <div class="form-box"> 
@@ -21,16 +24,16 @@
             <img src="./login-reg-img/tw.png" alt="">
             <img src="./login-reg-img/gp.png" alt="">
            </div>
-           <form action="http://localhost:3000/user/login" class="input-group" id="sign-in" method="post">
-            <input type="email" class="input-field" name="email" placeholder="Enter Email" required>
-            <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
+           <form  class="input-group" id="sign-in" >
+            <input type="email" class="input-field" id="in-email" name="email" placeholder="Enter Email" required>
+            <input type="password" class="input-field" id="in-password" name="password" placeholder="Enter Password" required>
             <input type="checkbox" class="check-box" ><span>Remember Password</span>
             <button type="submit" class="submit-btn">Sign In</button>
            </form>
-           <form action="http://localhost:3000/user/signup" class="input-group" id="sign-up" method="post">
-            <input type="text" class="input-field" name="name" placeholder="Enter Name" required>
-            <input type="email" class="input-field" name="email" placeholder="Enter Email" required>
-            <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
+           <form  class="input-group" id="sign-up" >
+            <input type="text" class="input-field" id="up-name" name="name" placeholder="Enter Name" required>
+            <input type="email" class="input-field" id="up-email" name="email" placeholder="Enter Email" required>
+            <input type="password" class="input-field" id="up-password" name="password" placeholder="Enter Password" required>
             <input type="checkbox" class="check-box"><span>agree to the terms & conditions</span>
             <button type="submit" class="submit-btn">Sign Up</button>
            </form>
