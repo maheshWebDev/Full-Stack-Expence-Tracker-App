@@ -23,7 +23,7 @@ signupform.addEventListener('submit',registerUser);
 signinform.addEventListener('submit',loginUser);
 
 function registerUser(e){
-    e.preventDefault();
+    // e.preventDefault();
 let name = document.getElementById('up-name').value;
 let email = document.getElementById('up-email').value;
 let password = document.getElementById('up-password').value;
@@ -51,6 +51,7 @@ const obj = {
 axios.post('http://localhost:3000/user/login',obj).then((res)=>{
     // console.log();
     alert(res.data.message)
+    localStorage.setItem('token',res.data.token);
     window.location.href="add-expence.html"; 
 }).catch((err)=>{
     console.log(err)

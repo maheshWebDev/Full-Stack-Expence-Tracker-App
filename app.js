@@ -9,7 +9,7 @@ const expenceRoute = require('./router/expenceRouter')
 
 const db = require('./config/dbConfig')
 
-const user = require('./model/userModel')
+const User = require('./model/userModel')
 
 const Expence = require('./model/expenceModel')
 
@@ -30,6 +30,11 @@ app.use(express.urlencoded({extended:true}));
 app.use('/user',userRoute)
 
 app.use('/expence',expenceRoute)
+
+// db association
+
+User.hasMany(Expence);
+Expence.belongsTo(User);
 
 // db sync
 

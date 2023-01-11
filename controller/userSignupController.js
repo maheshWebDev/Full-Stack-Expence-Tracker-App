@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt')
 
-const User = require('../model/userModel')
+const jwt = require('jsonwebtoken')
 
+const User = require('../model/userModel')
 module.exports.addUser = async(req,res)=>{
 
 
@@ -25,27 +26,22 @@ module.exports.addUser = async(req,res)=>{
     
 }
 
-module.exports.loginUser = (req,res)=>{
-    
-    let {email,password} = req.body;
-    
-    User.findAll({where:{email:email},raw:true})
-    .then((data)=>{
-        if(data){
-            console.log(data)
-bcrypt.compare(password, data[0].password,(err,result)=>{
-    if(err){
-            return  res.status(401).json({message:"password is incorrect"})
-    }
-    if(result){
-        res.status(200).json({message:" User login sucessfu"})
-    }
-})
-        }else{
-          return  res.status(404).json({err:"User not found"})
-        }
-    }).catch((err)=>{
-        res.status(500).json({err:"not found",success:false})
-    })
+module.exports.loginUser = async (req,res)=>{
+    try {
+        const {email,password} = req.body;
 
+       let user = await User.findAll({where:{email:email},raw:true});
+       if(!user) return res.status(400).json({message:"Invalid email."});
+
+       const validPassword = await bcrypt.compare(password,user[0].password);
+       if(!validPassword) return res.status(400).json({message:"Invalid password."});
+
+      const token = jwt.sign({userId:user[0].id},"jwtPrivateKey");
+      res.status(200).json({message:"user logged in successful",token:token});
+
+    } catch (error) {
+        res.status(500).json({err:"not found",success:false})
+    }
 }
+
+

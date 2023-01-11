@@ -3,8 +3,9 @@ let form = document.getElementById('form');
 form.addEventListener('submit',addExpence);
 
 window.addEventListener('DOMContentLoaded',function load(e){
-    // e.preventDefault();
-    axios.get('http://localhost:3000/expence/get-expence')
+// e.preventDefault();
+let token = localStorage.getItem('token')
+    axios.get('http://localhost:3000/expence/get-expence',{headers:{'Authorization':token}})
     .then((res)=>{
         res.data.expence.forEach(element => {
             showOnScreen(element)
@@ -15,7 +16,7 @@ window.addEventListener('DOMContentLoaded',function load(e){
 })
 
 function addExpence(e){
-    // e.preventDefault();
+    e.preventDefault();
     let expenceName = document.getElementById('exp-name').value;
     let amount = document.getElementById('exp-amt').value;
     let description= document.getElementById('exp-des').value;
@@ -25,9 +26,11 @@ function addExpence(e){
         description
     }
     // console.log(obj)
-    axios.post('http://localhost:3000/expence/add-expence',obj)
+    let token = localStorage.getItem('token')
+    console.log(token)
+    axios.post('http://localhost:3000/expence/add-expence',obj, {headers: {'Authorization':token}})
     .then((responce)=>{
-        
+        console.log(responce)
 
     }).catch((err)=>{
         console.log(err)
@@ -53,7 +56,8 @@ async function delteExpence(id){
 // e.preventDefault();
 
     try {
-        const responce = await axios.delete(`http://localhost:3000/expence/delete-expence/${id}`);
+        let token = localStorage.getItem('token')
+        const responce = await axios.delete(`http://localhost:3000/expence/delete-expence/${id}`,{headers: {'Authorization':token}});
         if(responce){
         removeFromUi(id)
         }
