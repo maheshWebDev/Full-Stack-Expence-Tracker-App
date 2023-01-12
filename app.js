@@ -7,11 +7,15 @@ const userRoute = require('./router/userRouter');
 
 const expenceRoute = require('./router/expenceRouter')
 
+const buyRoute = require('./router/buyRoute')
+
 const db = require('./config/dbConfig')
 
 const User = require('./model/userModel')
 
 const Expence = require('./model/expenceModel')
+
+const Order = require('./model/orderModel')
 
 
 
@@ -31,14 +35,19 @@ app.use('/user',userRoute)
 
 app.use('/expence',expenceRoute)
 
+app.use('/buy',buyRoute)
+
 // db association
 
 User.hasMany(Expence);
 Expence.belongsTo(User);
 
+User.hasMany(Order);
+Order.belongsTo(User);
+
 // db sync
 
-db.sync().then().catch((err)=>{
+db.sync({alter:true}).then().catch((err)=>{
     console.log(err);
 })
 app.listen(3000,()=>{

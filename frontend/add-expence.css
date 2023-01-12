@@ -91,7 +91,7 @@ header ul li a{
     background-color: #cb0d0d;
     color: #ffffff;
     padding: 3px;
-    border: none;
+    border: 2px solid white;
   }
 
   .header-h1{
@@ -100,7 +100,7 @@ header ul li a{
     font-size: 10px;
     background-color: rgb(22, 14, 14);
     color: white;
-    padding: 7px;
+    padding: 5px;
     
   }
 /* table style */
@@ -146,4 +146,13 @@ td button{
     background-color: #cb0d0d;
     color: #ffffff;
     border: none;
+}
+.pre-btn{
+    height: 35px;
+    width: 150px;
+    margin-left: 50%;
+    /* padding: 2px; */
+    background-color: #cb0d0d;
+    border: 2px solid white;
+    color: #ffffff;
 }
