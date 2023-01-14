@@ -2,12 +2,14 @@ const Razorpay = require('razorpay');
 
 const Order = require('../model/orderModel');
 
+const {jwtToken}= require('./userSignupController')
+
 module.exports.buyPremiumMembership = async(req,res)=>{
 
     try {
         let instance = new Razorpay({
-            key_id:'rzp_test_wtF5m6hLgdVcFy',
-            key_secret:'GPWZSFClrI8BLFEOoRHxdQr4'
+            key_id: process.env.RAZORPAY_KEY_ID,
+            key_secret: process.env.RAZORPAY_KEY_SECRET
         })
         //  creating order
        instance.orders.create({amount:299,currency:"INR"},(err,order)=>{

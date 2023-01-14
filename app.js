@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+
+dotenv.config({path:'./config.env'});
 
 const express = require('express');
 
@@ -7,7 +10,9 @@ const userRoute = require('./router/userRouter');
 
 const expenceRoute = require('./router/expenceRouter')
 
-const buyRoute = require('./router/buyRoute')
+const buyPremiumRoute = require('./router/buyPremiumRoute')
+
+const premiumRoute = require('./router/premiumRoute')
 
 const db = require('./config/dbConfig')
 
@@ -35,7 +40,9 @@ app.use('/user',userRoute)
 
 app.use('/expence',expenceRoute)
 
-app.use('/buy',buyRoute)
+app.use('/buy',buyPremiumRoute)
+
+app.use('/premium',premiumRoute)
 
 // db association
 
@@ -47,7 +54,7 @@ Order.belongsTo(User);
 
 // db sync
 
-db.sync({alter:true}).then().catch((err)=>{
+db.sync().then().catch((err)=>{
     console.log(err);
 })
 app.listen(3000,()=>{

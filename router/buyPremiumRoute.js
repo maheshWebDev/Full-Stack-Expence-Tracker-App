@@ -1,6 +1,6 @@
 const express = require('express');
 
-const {buyPremiumMembership,updateStatus} = require('../controller/buyController')
+const {buyPremiumMembership,updateStatus} = require('../controller/buyPremiumController')
 
 const {authenticate} = require('../middleware/auth')
 

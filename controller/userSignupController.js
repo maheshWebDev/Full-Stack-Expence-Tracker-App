@@ -3,6 +3,11 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const User = require('../model/userModel')
+
+module.exports.jwtToken = (id,ispremiumuser)=>{
+   return jwt.sign({userId:id,ispremiumuser},"jwtPrivateKey")
+}
+
 module.exports.addUser = async(req,res)=>{
 
 
@@ -36,7 +41,7 @@ module.exports.loginUser = async (req,res)=>{
        const validPassword = await bcrypt.compare(password,user[0].password);
        if(!validPassword) return res.status(400).json({message:"Invalid password."});
 
-      const token = jwt.sign({userId:user[0].id},"jwtPrivateKey");
+      const token = jwt.sign({userId:user[0].id,ispremiumuser:user[0].ispremiumuser},"jwtPrivateKey");
       res.status(200).json({message:"user logged in successful",token:token});
 
     } catch (error) {

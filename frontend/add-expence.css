@@ -147,6 +147,48 @@ td button{
     color: #ffffff;
     border: none;
 }
+
+/* table 2 */
+#ladar{
+    visibility: hidden;
+    margin-top: 20px;
+}
+#ladar h1{
+    text-align: center;
+    color: rgb(149, 0, 218);
+}
+.content-table2 {
+    border-collapse: collapse;
+   
+     margin-top: 0px;
+     margin-left: 35px;
+   
+    font-size: 0.9em;
+    min-width: 92%;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table2 thead tr {
+    background-color:rgb(149, 0, 218);
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table2 th,
+.content-table2 td {
+    padding: 12px 15px;
+}
+
+.content-table2 tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table2 tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
 .pre-btn{
     height: 35px;
     width: 150px;

@@ -1,11 +1,34 @@
-// const { options } = require("../router/userRouter");
+
 
 let form = document.getElementById('form');
 form.addEventListener('submit',addExpence);
 
-window.addEventListener('DOMContentLoaded',function load(e){
+
+// parsing jwt token
+
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
+
+
+window.addEventListener('DOMContentLoaded',function (e){
 // e.preventDefault();
 let token = localStorage.getItem('token')
+
+let decodedToken = parseJwt(token);
+let isPremium = decodedToken.ispremiumuser
+if(isPremium){
+    document.getElementById('p-btn').style.visibility="hidden";
+    document.getElementById('head-message').innerHTML = `<h1>You Are A Premium User</h1>
+    <button type="button" id="l-btn" class="pre-btn" Onclick="showLeaderboard()">Show ladarbord</button>`
+}
+console.log(decodedToken)
     axios.get('http://localhost:3000/expence/get-expence',{headers:{'Authorization':token}})
     .then((res)=>{
         res.data.expence.forEach(element => {
@@ -37,6 +60,12 @@ document.getElementById('p-btn').addEventListener('click',async(e)=>{
                 {headers:{"Authorization":token}})
 
                 alert('you are a premium user now')
+                document.getElementById('p-btn').style.visibility="hidden";
+                document.getElementById('head-message').innerHTML = `<h1>You Are A Premium User</h1>
+                <button type="button" id="l-btn" class="pre-btn" Onclick="showLeaderboard ()">Show Leaderboard </button>`
+                // localStorage.setItem('token',res.data.token);
+            
+                
             },
         };
 
@@ -117,4 +146,31 @@ async function delteExpence(id){
 function removeFromUi(id){
 let parent = document.getElementById(`${id}`);
 parent.remove();
+}
+
+
+function showLeaderboard (){
+   document.getElementById('ladar').style.visibility ='visible';
+let token = localStorage.getItem('token');
+   axios.get('http://localhost:3000/premium/show-leaderboard',{headers: {'Authorization':token}})
+   .then((responce)=>{
+    console.log(responce.data.userLeaderboardDetails)
+    
+    responce.data.userLeaderboardDetails.forEach((obj)=>{
+        showLeaderboardOnScreen(obj)
+    })
+   
+   
+   }).catch((err)=>{
+    console.log(err);
+   })
+}
+
+function showLeaderboardOnScreen(obj){
+    let parent = document.getElementById('tbody2');
+    let output = `<tr>
+    <td>${obj.name}</td>
+    <td>${obj.totalSpent}</td>
+  </tr>`
+  parent.innerHTML += output
 }
