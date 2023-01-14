@@ -5,15 +5,17 @@ function signup(){
     x.style.left = "-400px";
     y.style.left = "50px";
     z.style.left = "110px";
+    document.getElementById('fp-btn').style.visibility=" hidden"
 }
 function signin(){
     x.style.left = "50px";
     y.style.left = "450px";
     z.style.left = "0";
+    document.getElementById('fp-btn').style.visibility="visible"
 }
 
 
-
+// document.getElementById('fp-btn').addEventListener('click',forgotpassword)
 //  sign up 
 
 let signupform = document.getElementById('sign-up');
@@ -56,4 +58,10 @@ axios.post('http://localhost:3000/user/login',obj).then((res)=>{
 }).catch((err)=>{
     console.log(err)
 })
+}
+
+function forgotpassword() {
+    // e.preventDefault();
+    console.log("wro")
+    window.location.href = "forgotPassword.html"
 }

@@ -28,6 +28,6 @@ userLeaderboardDetails.push({name:user.name,totalSpent :userAggregatedExpenses[u
         res.status(200).json({userLeaderboardDetails})
         
     } catch (error) {
-        res.status(400).json({message:"something went wrong"})
+        res.status(500).json({message:"something went wrong"})
     }
 }
