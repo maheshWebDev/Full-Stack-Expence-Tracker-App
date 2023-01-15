@@ -4,9 +4,7 @@ const jwt = require('jsonwebtoken')
 
 const User = require('../model/userModel')
 
-module.exports.jwtToken = (id,ispremiumuser)=>{
-   return jwt.sign({userId:id,ispremiumuser},"jwtPrivateKey")
-}
+
 
 module.exports.addUser = async(req,res)=>{
 

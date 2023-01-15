@@ -63,7 +63,8 @@ document.getElementById('p-btn').addEventListener('click',async(e)=>{
                 document.getElementById('p-btn').style.visibility="hidden";
                 document.getElementById('head-message').innerHTML = `<h1>You Are A Premium User</h1>
                 <button type="button" id="l-btn" class="pre-btn" Onclick="showLeaderboard ()">Show Leaderboard </button>`
-                // localStorage.setItem('token',res.data.token);
+                // localStorage.setItem('token',responce.data.token);
+                console.log(responce)
             
                 
             },

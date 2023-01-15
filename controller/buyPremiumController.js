@@ -2,7 +2,6 @@ const Razorpay = require('razorpay');
 
 const Order = require('../model/orderModel');
 
-const {jwtToken}= require('./userSignupController')
 
 module.exports.buyPremiumMembership = async(req,res)=>{
 
@@ -41,7 +40,8 @@ module.exports.updateStatus = async(req,res)=>{
         order.update({paymentid:payment_id,status:"SUCCESSFUL"});
 
        await req.user.update({ispremiumuser:true});
-
+      
+      
        return res.status(200).json({success:true,message:"transaction successful"})
 
 

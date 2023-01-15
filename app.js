@@ -14,6 +14,8 @@ const buyPremiumRoute = require('./router/buyPremiumRoute')
 
 const premiumRoute = require('./router/premiumRoute')
 
+
+
 const db = require('./config/dbConfig')
 
 const User = require('./model/userModel')
@@ -21,6 +23,8 @@ const User = require('./model/userModel')
 const Expence = require('./model/expenceModel')
 
 const Order = require('./model/orderModel')
+
+
 
 
 
@@ -44,6 +48,8 @@ app.use('/buy',buyPremiumRoute)
 
 app.use('/premium',premiumRoute)
 
+
+
 // db association
 
 User.hasMany(Expence);
@@ -51,6 +57,8 @@ Expence.belongsTo(User);
 
 User.hasMany(Order);
 Order.belongsTo(User);
+
+
 
 // db sync
 
