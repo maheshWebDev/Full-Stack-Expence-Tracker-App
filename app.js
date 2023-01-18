@@ -62,7 +62,7 @@ Order.belongsTo(User);
 
 // db sync
 
-db.sync().then().catch((err)=>{
+db.sync({force:true}).then().catch((err)=>{
     console.log(err);
 })
 app.listen(3000,()=>{

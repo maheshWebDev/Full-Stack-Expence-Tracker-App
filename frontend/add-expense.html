@@ -5,24 +5,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Expense-Manager</title>
-  <link rel="stylesheet" href="add-expence.css">
+  <link rel="stylesheet" href="add-expense.css">
 </head>
 <body>
-  <header>
-    <a href="#" class="logo">EXPENSE MANAGER</a>
-    <ul>
-        <li><a href="#">Add-Expense</a></li>
-    </ul>
-   </header>
+    <header>
+        <nav>
+          <ul>
+            <li><a class="current" href="index.html">Home</a></li>
+           
+            <li><a href="#">Add Expense</a></li>
+          </ul> 
+         </nav>
+        </header>
    <div class="header-h1" id="head-message">
-    <h1 id="message">Manage Your Expence Fast And Easily</h1>
+    <h1 id="message">Manage Your Expense Fast And Easily</h1>
     <button type="button" id="p-btn" class="pre-btn">Buy Premium</button>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
    </div>
    
 <div class="form-container">
   <form  id="form">
-      <input type="text" id="exp-name" class="input" name="name" value="" placeholder="Expence Name">
+      <input type="text" id="exp-name" class="input" name="name" value="" placeholder="Expense Name">
    
     <input type="number" id="exp-amt" class="input" name="amount" value="" placeholder="Amount Spent">
    
@@ -41,10 +44,10 @@
           <th>Expense Name</th>
           <th>Amount Spent</th>
           <th>Expense Description</th>
-          <th>Delete</th>
+          <th></th>
         </tr>
       </thead>
-      <tbody id="tbody">
+      <tbody id="tbody"> 
       </tbody>
     </table>
 
@@ -54,21 +57,23 @@
       <table class="content-table2">
         <thead>
           <tr>
-            <!-- <th>Rank</th> -->
+        
             <th>Name</th>
             <th>Spent</th>
-            <!-- <th>D</th> -->
+           
           </tr>
         </thead>
        
         <tbody id="tbody2">
         </tbody>
       </table>
-    </div>
+     </div> 
    
-
+    <footer>
+      <p>Copyright @ Mahesh </p>
+    </footer>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"></script>
-  <script src="add-expence.js"></script>
+  <script src="add-expense.js"></script>
 </body>
 </html>

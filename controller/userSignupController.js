@@ -9,6 +9,7 @@ const User = require('../model/userModel')
 module.exports.addUser = async(req,res)=>{
 
 
+
     try {
         let {name,email,password} = req.body;
   
@@ -24,7 +25,7 @@ module.exports.addUser = async(req,res)=>{
 })
     }
     catch(err) {
-     res.status(500).json(err);
+     res.status(500).json({error:err});
     }
     
 }

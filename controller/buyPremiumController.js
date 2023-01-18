@@ -13,7 +13,7 @@ module.exports.buyPremiumMembership = async(req,res)=>{
         //  creating order
        instance.orders.create({amount:299,currency:"INR"},(err,order)=>{
         if(err){
-            console.log(err);
+            return res.status(401).json({message:"API key expired"})
         }
         console.log(order);
         
