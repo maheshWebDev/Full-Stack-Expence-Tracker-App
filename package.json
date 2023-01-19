@@ -19,6 +19,7 @@
   "homepage": "https://github.com/maheshb02/Full-Stack-Expence-Tracker-App#readme",
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
+    "aws-sdk": "^2.1296.0",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

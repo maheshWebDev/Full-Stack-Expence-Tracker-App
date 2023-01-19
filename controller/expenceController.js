@@ -1,5 +1,7 @@
 const Expence = require('../model/expenceModel');
 
+const AWS = require('aws-sdk')
+
 module.exports.addExpence = async(req,res)=>{
 
     try {
@@ -45,4 +47,54 @@ module.exports.deleteExpence = async(req,res)=>{
     }
 
 
+}
+
+function uploadToS3(data,fileName){
+
+    let s3bucket = new AWS.S3({
+        accessKeyId:process.env.IAM_USER_KEY,
+        secretAccessKey:process.env.IAM_USER_SECRET,
+    })
+    
+        var params = {
+            Bucket:process.env.BUCKET_NAME,
+            Key: fileName,
+            Body:data,
+            ACL: 'public-read'
+        }
+        return new Promise((resolve,reject)=>{
+            s3bucket.upload(params,(err,success)=>{
+                if(err){
+                    console.log("something went wrong")
+                    reject(err)
+                }else{
+                    console.log('result', success)
+                    resolve(success.Location)
+                }
+            })
+        })
+        
+    
+
+}
+
+
+
+
+module.exports.downloadExpense = async(req,res)=>{
+
+    try {
+       const expenses = await Expence.findAll({where:{userId:req.user.id}})
+         const stringifiendExpenses = JSON.stringify(expenses)
+         const fileName = `Expense/${req.user.id}/${new Date()}.txt`;
+         const fileURL = await uploadToS3(stringifiendExpenses,fileName )
+       res.status(200).json({fileURL,success:true})
+    
+
+       
+        
+    } catch (error) {
+        res.status(500).json({fileURL:'',success:false})
+    }
+  
 }

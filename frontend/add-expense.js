@@ -26,7 +26,8 @@ let isPremium = decodedToken.ispremiumuser
 if(isPremium){
     document.getElementById('p-btn').style.visibility="hidden";
     document.getElementById('head-message').innerHTML = `<h1>You Are A Premium User</h1>
-    <button type="button" id="l-btn" class="pre-btn" Onclick="showLeaderboard()">Show ladarbord</button>`
+    <button type="button" id="l-btn" class="pre-btn" Onclick="showLeaderboard()">Leaderboard</button>
+    <button type="button" id="d-btn" class="pre-btn" Onclick="downloadExpense()">Download </button>`
 }
 console.log(decodedToken)
     axios.get('http://localhost:3000/expence/get-expence',{headers:{'Authorization':token}})
@@ -124,7 +125,8 @@ document.getElementById('p-btn').addEventListener('click',async(e)=>{
                 alert('you are a premium user now')
                 document.getElementById('p-btn').style.visibility="hidden";
                 document.getElementById('head-message').innerHTML = `<h1>You Are A Premium User</h1>
-                <button type="button" id="l-btn" class="pre-btn" Onclick="showLeaderboard ()">Show Leaderboard </button>`
+                <button type="button" id="l-btn" class="pre-btn" Onclick="Leaderboard ()">Show Leaderboard </button>
+                <button type="button" id="d-btn" class="pre-btn" Onclick="downloadExpense()">Download</button>`
                 // localStorage.setItem('token',responce.data.token);
                 // console.log(responce)
             
@@ -179,4 +181,26 @@ function showLeaderboardOnScreen(obj){
     <td>${obj.totalSpent}</td>
   </tr>`
   parent.innerHTML += output
+}
+
+// download expence
+
+ function downloadExpense(){
+//    e.preventDefault();
+   console.log("working")
+   let token = localStorage.getItem('token');
+      axios.get('http://localhost:3000/expence/download',{headers: {'Authorization':token}})
+      .then((responce)=>{
+        if(responce.status===200){
+            let a=document.createElement('a');
+            a.href=responce.data.fileURL;
+            a.download='myexpense.csv';
+            a.click();
+        }else{
+            throw new Error(responce.err)
+        }
+        console.log(responce)
+      }).catch((err)=>{
+        alert(err)
+      })
 }

@@ -15,13 +15,13 @@
     li a{
       display: block;
       color: white;
-      text-aligh: centre;
+      text-align: centre;
       padding: 14px 16px;
       font-size: 20px;
       text-decoration: none;
     }
     li a:hover:not(.current){
-      bacgkround-color: #111;
+      background-color: #111;
     }
     .current{
       background-color: rgb(46, 149, 218);
@@ -33,7 +33,7 @@
       width:300px;
       padding: 50px;
       margin:auto;
-      align:center;
+      align-items:center;
       color:black;
       background-color:white;
       text-align:center;
@@ -49,13 +49,13 @@
     footer{
       background-color: rgb(44,48,58);
       color: rgb(255,221,64);
-      align:center;
+      align-items:center;
       text-align:center;
       margin-top: 20px;
       padding: 10px;
     }
     div{
-      align: center;
+      align-items: center;
       margin: auto;
       width: auto;
     }
